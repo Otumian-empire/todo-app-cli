@@ -39,14 +39,18 @@ class Todo:
         self.cur = db.get_cursor(self.db_conn)
 
     def create_activity(self, task):
-        if not task:
-            return False
-
-        sql_query = "INSERT INTO `todos`(`task`) VALUES (%s);"
-        values = (task.lower(),)
 
         try:
+            if not task:
+                return False
+
+            task = str(task).lower()
+
+            sql_query = "INSERT INTO `todos`(`task`) VALUES (%s);"
+            values = (task,)
+
             self.cur.execute(sql_query, values)
+
         except (Exception, mysql.connector.Error) as e:
             print(str(e))
             return False
@@ -60,10 +64,11 @@ class Todo:
         return True
 
     def read_all_activities(self):
-        sql_query = "SELECT `id`, `task`, `created_at` FROM `todos`;"
 
         try:
+            sql_query = "SELECT `id`, `task`, `created_at` FROM `todos`;"
             self.cur.execute(sql_query)
+
         except (Exception, mysql.connector.Error) as e:
             print(str(e))
             return []
@@ -78,14 +83,18 @@ class Todo:
         return items
 
     def read_an_activity(self, id):
-        if not id:
-            return False
-
-        sql_query = f"SELECT `id`, `task`, `created_at` FROM `todos` WHERE `id`=%s;"
-        values = (str(id).lower(), )
 
         try:
+            if not id:
+                return []
+
+            id = int(id)
+
+            sql_query = f"SELECT `id`, `task`, `created_at` FROM `todos` WHERE `id`=%s;"
+            values = (id, )
+
             self.cur.execute(sql_query, values)
+
         except (Exception, mysql.connector.Error) as e:
             print(str(e))
             return []
@@ -100,14 +109,19 @@ class Todo:
         return item
 
     def update_an_activity(self, id, new_task):
-        if not id or not new_task:
-            return False
-
-        sql_query = f"UPDATE `todos` SET `task`=%s `update_at`=CURRENT_TIMESTAMP WHERE `id`=%s;"
-        values = (new_task.lower(), str(id))
 
         try:
+            if not id or not new_task:
+                return False
+
+            id = int(id)
+            new_task = str(new_task).lower()
+
+            sql_query = f"UPDATE `todos` SET `task`=%s, `update_at`=CURRENT_TIMESTAMP WHERE `id`=%s;"
+            values = (new_task, id)
+
             self.cur.execute(sql_query, values)
+
         except (Exception, mysql.connector.Error) as e:
             print(str(e))
             return False
@@ -121,14 +135,18 @@ class Todo:
         return True
 
     def delete_an_activity(self, id):
-        if not id:
-            return False
-
-        sql_query = f"DELETE FROM `todos` WHERE `id`=%s;"
-        values = (str(item_value).lower(), )
 
         try:
+            if not id:
+                return False
+
+            id = int(id)
+
+            sql_query = f"DELETE FROM `todos` WHERE `id`=%s;"
+            values = (id, )
+
             self.cur.execute(sql_query, values)
+
         except (Exception, mysql.connector.Error) as e:
             print(str(e))
             return False
@@ -142,10 +160,11 @@ class Todo:
         return True
 
     def delete_all_activities(self):
-        sql_query = f"DELETE FROM `todos`;"
 
         try:
+            sql_query = f"DELETE FROM `todos`;"
             self.cur.execute(sql_query)
+
         except (Exception, mysql.connector.Error) as e:
             print(str(e))
             return False
@@ -157,5 +176,3 @@ class Todo:
         self.db_conn.close()
 
         return True
-
-
