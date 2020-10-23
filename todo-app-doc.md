@@ -106,7 +106,8 @@ git text editor (vscode, sublime, ...)
 - [xampp]
 - [cmd-import-sql-file]
 - [python-unittest]
-- [python-dotenv]]
+- [python-dotenv]
+- [python-sys-argv]
 
 #
 
@@ -115,6 +116,7 @@ git text editor (vscode, sublime, ...)
 [pypa-io-pipenv]: https://pipenv.pypa.io/en/latest/basics/
 [python-dotenv]: https://libraries.io/pypi/python-dotenv
 [python-mysql]: https://www.w3schools.com/python/python_mysql_getstarted.asp
+[python-sys-argv]: https://docs.python.org/3/library/sys.html#sys.argv
 [python-unittest]: https://docs.python.org/3.8/library/unittest.html
 [realpython-pipenv-guide]: https://realpython.com/pipenv-guide/
 [xampp]: https://www.apachefriends.org/download.html
