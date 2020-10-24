@@ -2,9 +2,10 @@
 
 This is todo app that runs on the commandline connected to an actual databse.
 
-## How set up
+## How to set up
 
 - clone app
 - create database
 - install modules
 - run app
+- run tests
