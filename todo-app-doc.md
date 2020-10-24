@@ -20,6 +20,7 @@ git text editor (vscode, sublime, ...)
 - git - track the files
 - mysql-connector-python - as a wrapper around mysql for the database
 - xammp (mysql) - for the database
+- unittest - for testing
 
 ## ACTIVITY MODEL
 
@@ -104,12 +105,18 @@ git text editor (vscode, sublime, ...)
 - [pypa-io-pipenv]
 - [xampp]
 - [cmd-import-sql-file]
+- [python-unittest]
+- [python-dotenv]
+- [python-sys-argv]
 
 #
 
 [clear-screen]: https://stackoverflow.com/a/2084628/10051170
+[cmd-import-sql-file]: https://stackoverflow.com/a/17666279/10051170
 [pypa-io-pipenv]: https://pipenv.pypa.io/en/latest/basics/
+[python-dotenv]: https://libraries.io/pypi/python-dotenv
 [python-mysql]: https://www.w3schools.com/python/python_mysql_getstarted.asp
+[python-sys-argv]: https://docs.python.org/3/library/sys.html#sys.argv
+[python-unittest]: https://docs.python.org/3.8/library/unittest.html
 [realpython-pipenv-guide]: https://realpython.com/pipenv-guide/
 [xampp]: https://www.apachefriends.org/download.html
-[cmd-import-sql-file]:https://stackoverflow.com/a/17666279/10051170
