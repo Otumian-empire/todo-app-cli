@@ -1,4 +1,6 @@
 import os
+import sys
+
 import model
 
 
@@ -16,13 +18,15 @@ def print_activity(activity):
 class CoreParser:
 
     def __init__(self, option):
+        self.print_message = option.print_message
+        self.requires_input = option.requires_input
+
         self.command = option.command
         self.id = option.id
         self.task = option.task
 
-        print(f"command: {self.command}")
-        print(f"id: {self.id}")
-        print(f"task: {self.task}")
+        if self.requires_input:
+            self.input_activity = option.input_activity
 
     def _parse_create_activity(self):
         if model.create_activity():
@@ -66,22 +70,29 @@ class CoreParser:
             print("delete all activity unsuccessful")
 
     def run_core_parser(self):
-        while self.command not in ['7', 'exit', 'quit']:
-            if self.command == "1":
-                self._parse_create_activity()
-            elif self.command == "2":
-                self._parse_read_an_activity()
-            elif self.command == "3":
-                self._parse_read_all_activities()
-            elif self.command == "4":
-                self._parse_update_an_activity()
-            elif self.command == "5":
-                self._parse_delete_an_activity()
-            elif self.command == "6":
-                self._parse_delete_all_activities()
-            else:
-                clear_screen()
-                exit()
+
+        if self.command == "1":
+            self._parse_create_activity()
+        elif self.command == "2":
+            self._parse_read_an_activity()
+        elif self.command == "3":
+            self._parse_read_all_activities()
+        elif self.command == "4":
+            self._parse_update_an_activity()
+        elif self.command == "5":
+            self._parse_delete_an_activity()
+        elif self.command == "6":
+            self._parse_delete_all_activities()
+        elif self.command == "7":
+            clear_screen()
+            sys.exit()
+        elif self.command == "clear" and self.requires_input:
+            clear_screen()
+            self.print_message()
+            self.input_activity()
+        else:
+            clear_screen()
+            sys.exit()
 
 
 class Option1Parser:
@@ -93,19 +104,15 @@ class Option1Parser:
     5 - delete an activity
     6 - delete all activities
     7 - exit
+    clear - clear the screen
     '''
 
     def __init__(self):
-        print('''
-            1 - add an activity
-            2 - read an activity
-            3 - read all activities
-            4 - update an activity
-            5 - delete an activity
-            6 - delete all activities
-            7 - exit
-            ''')
+        self.requires_input = True
+        self.print_message()
+        self.input_activity()
 
+    def input_activity(self):
         self.command = input(">>> Enter command option: ")
         self.id = 0
         self.task = ""
@@ -115,6 +122,19 @@ class Option1Parser:
 
             if self.command == '4':
                 self.task = input(">>> Enter task: ")
+
+    def print_message(self):
+        message = '''
+            1 - add an activity
+            2 - read an activity
+            3 - read all activities
+            4 - update an activity
+            5 - delete an activity
+            6 - delete all activities
+            7 - exit
+            clear - clear the screen
+            '''
+        print(message)
 
 
 class Option2Parser:
@@ -127,5 +147,12 @@ class Option2Parser:
     - delete activity_id
     - delete *
     - delete all
+    - clear - clear the screen
     '''
-    pass
+
+    def __init__(self):
+        self.requires_input = False
+        pass
+
+    def print_message(self):
+        pass
