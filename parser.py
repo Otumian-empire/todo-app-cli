@@ -3,6 +3,8 @@ import sys
 
 import model
 
+# TODO: separate all the parsers and the helping functions (clear_screen and print_activity)
+
 
 def clear_screen():
     _ = os.system('cls' if os.name == 'nt' else 'clear')

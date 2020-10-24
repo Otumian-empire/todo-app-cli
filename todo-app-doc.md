@@ -13,6 +13,8 @@ git text editor (vscode, sublime, ...)
 - `todo.sql` - has the structure of the database table
 - `README.md` - has information on how to install/download and run app
 - `todo-app-doc.md` - has information on app design
+- `.env.local` - has database configurations (create if does not exist)
+- `parser.py` - parses the input from the user to the CoreParse that basically runs the whole program (Has two other classes, Option1Parser and Option2Parser)
 
 ## DEPENDENCIES
 
@@ -49,6 +51,7 @@ git text editor (vscode, sublime, ...)
   - 5 - delete an activity
   - 6 - delete all activities
   - 7 - exit
+  - clear - to clear the screen
 
 - option 2 (command based)
 
@@ -89,6 +92,7 @@ git text editor (vscode, sublime, ...)
   - delete, all
 
 - exit
+- clear
 
 ## Other notes
 
