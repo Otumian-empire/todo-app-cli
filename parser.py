@@ -3,8 +3,6 @@ import sys
 
 import model
 
-# TODO: separate all the parsers and the helping functions (clear_screen and print_activity)
-
 
 def clear_screen():
     _ = os.system('cls' if os.name == 'nt' else 'clear')
@@ -70,9 +68,6 @@ class CoreParser:
             print("delete all activities successful")
         else:
             print("delete all activity unsuccessful")
-
-    # TODO: find a way to make run_core_parser not change
-    # run_core_parser has to change when another OptionParser is added
 
     def run_core_parser(self):
 
