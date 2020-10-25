@@ -71,7 +71,7 @@ class CoreParser:
 
     def run_core_parser(self):
 
-        if self.command in ["1", "add"]:
+        if self.command == "1" or self.command == "add":
             self._parse_create_activity()
 
         elif self.command == "2" or (
@@ -106,6 +106,7 @@ class CoreParser:
 
         elif self.command in [
                 "doc", "tut", "documentation", "tutorial", "guide"]:
+            clear_screen()
             self.print_message()
 
         else:
@@ -123,6 +124,7 @@ class Option1Parser:
     6 - delete all activities
     7 - exit
     clear - clear the screen
+    doc - display simple tutorial
     '''
 
     def __init__(self):
@@ -151,6 +153,7 @@ class Option1Parser:
             6 - delete all activities
             7 - exit
             clear - clear the screen
+            doc - display simple tutorial
             '''
         print(message)
 
@@ -166,6 +169,7 @@ class Option2Parser:
     - delete *
     - delete all
     - clear - clear the screen
+    - doc - display simple tutorial
     '''
 
     def __init__(self, parsed_input):
@@ -199,15 +203,22 @@ class Option2Parser:
         delete all
         delete *
         (This deletes all there activities - the id is all or *)
+
+        clear - clears the screen
+
+        doc - display simple tutorial
         '''
         print(tutorial)
 
     def input_activity(self, input_data):
-        if len(input) > 2:
-            self.command = input_data[1]
+        
+        self.command = input_data[0]
 
-            if self.command in ['read', 'update', 'delete']:
-                self.id = input_data[2]
+        if self.command == 'add':
+            self.task = input_data[1]
 
-            if self.command in ['add', 'update']:
-                self.task = input_data[3]
+        if self.command in ['read', 'update', 'delete']:
+            self.id = input_data[1]
+
+        if self.command == 'update':
+            self.task = input_data[2]
