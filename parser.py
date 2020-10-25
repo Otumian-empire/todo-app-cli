@@ -152,9 +152,44 @@ class Option2Parser:
     - clear - clear the screen
     '''
 
-    def __init__(self):
+    def __init__(self, parsed_input):
         self.requires_input = False
-        pass
+        self.command = ""
+        self.id = 0
+        self.task = ""
 
     def print_message(self):
-        pass
+        tutorial = '''
+        This is a simple tutorial on how to run app on terminal
+
+        add "Call John Doe at 2pm"
+        (This is adds a new activity)
+
+        read 2
+        (This reads an activity with id=2)
+
+        read all
+        read *
+        (This reads all the activities - the id is all or *)
+
+        update 2 "Call John Doe at 3pm"
+        (This update an activity with id=2 with the text as task)
+
+        delete 2
+        (This deletes an activity with id=2)
+
+        delete all
+        delete *
+        (This deletes all there activities - the id is all or *)
+        '''
+        print(tutorial)
+
+    def input_activity(self, input_data):
+        if len(input) > 2:
+            self.command = input_data[1]
+
+            if self.command in ['read', 'update', 'delete']:
+                self.id = input_data[2]
+
+            if self.command in ['add', 'update']:
+                self.task = input_data[3]
