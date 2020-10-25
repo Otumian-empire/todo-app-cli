@@ -8,6 +8,7 @@ Please note we have a code of conduct, please follow it in all your interactions
 
 1. Ensure any files not needed are removed before adding.
 2. Update the `README.md` or `todo-app-doc.md` with details of changes to the interfaces.
+3. Any contributions must be done on a new branch
 
 ## Code of Conduct
 
