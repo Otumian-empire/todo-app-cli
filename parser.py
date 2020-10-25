@@ -150,7 +150,14 @@ class Option2Parser:
     - clear - clear the screen
     '''
 
-    def __init__(self):
+    def __init__(self, parsed_input):
+        # TODO
+        # parsed_input is a list of command, id, and task, in 
+        # this manner respectfuly
+
+        # TODO
+        # Add a tutorial option to the menu to display some bit of information
+        # on how to use the app on the commandline
         self.requires_input = False
         pass
 
