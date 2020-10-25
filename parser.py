@@ -31,7 +31,7 @@ class CoreParser:
             self.input_activity = option.input_activity
 
     def _parse_create_activity(self):
-        if model.create_activity():
+        if model.create_activity(self.task):
             print("create activity successful")
         else:
             print("create activity unsuccessful")
@@ -71,27 +71,48 @@ class CoreParser:
         else:
             print("delete all activity unsuccessful")
 
+    # TODO: find a way to make run_core_parser not change
+    # run_core_parser has to change when another OptionParser is added
+
     def run_core_parser(self):
 
-        if self.command == "1":
+        if self.command in ["1", "add"]:
             self._parse_create_activity()
-        elif self.command == "2":
+
+        elif self.command == "2" or (
+                self.command == "read" and self.id not in ["all", "*"]):
             self._parse_read_an_activity()
-        elif self.command == "3":
+
+        elif self.command == "3" or (
+                self.command == "read" and self.id in ["all", "*"]):
             self._parse_read_all_activities()
-        elif self.command == "4":
+
+        elif self.command == "4" or self.command == "update":
             self._parse_update_an_activity()
-        elif self.command == "5":
+
+        elif self.command == "5" or (
+                self.command == "delete" and self.id not in ["all", "*"]):
             self._parse_delete_an_activity()
-        elif self.command == "6":
+
+        elif self.command == "6" or (
+                self.command == "delete" and self.id in ["all", "*"]):
             self._parse_delete_all_activities()
-        elif self.command == "7":
+
+        elif self.command == "7" or self.command in ["exit", "quit"]:
             clear_screen()
             sys.exit()
-        elif self.command == "clear" and self.requires_input:
+
+        elif self.command == "clear":
             clear_screen()
+
+            if self.requires_input:
+                self.print_message()
+                self.input_activity()
+
+        elif self.command in [
+                "doc", "tut", "documentation", "tutorial", "guide"]:
             self.print_message()
-            self.input_activity()
+
         else:
             clear_screen()
             sys.exit()
@@ -157,6 +178,8 @@ class Option2Parser:
         self.command = ""
         self.id = 0
         self.task = ""
+
+        self.input_activity(parsed_input)
 
     def print_message(self):
         tutorial = '''
