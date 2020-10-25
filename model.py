@@ -66,7 +66,7 @@ class Todo:
     def read_all_activities(self):
 
         try:
-            sql_query = "SELECT `id`, `task`, `created_at` FROM `todos`;"
+            sql_query = "SELECT `id`, `task`, `created_at`, `update_at` FROM `todos`;"
             self.cur.execute(sql_query)
 
         except (Exception, mysql.connector.Error) as e:
@@ -90,7 +90,7 @@ class Todo:
 
             id = int(id)
 
-            sql_query = f"SELECT `id`, `task`, `created_at` FROM `todos` WHERE `id`=%s;"
+            sql_query = f"SELECT `id`, `task`, `created_at`, `update_at` FROM `todos` WHERE `id`=%s;"
             values = (id, )
 
             self.cur.execute(sql_query, values)

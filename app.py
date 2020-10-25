@@ -1,11 +1,14 @@
-print(
-    '''
-1 - add an activity
-2 - read an activity
-3 - read all activities
-4 - update an activity
-5 - delete an activity
-6 - delete all activities
-7 - exit
-    '''
-)
+import sys
+from parser import CoreParser, Option1Parser, Option2Parser
+
+if __name__ == "__main__":
+
+    if len(sys.argv) > 1:
+        # TODO
+        # pass sys.argv[1:] to the Option2Parser to get command, id and task
+        option = Option2Parser()
+    else:
+        option = Option1Parser()
+
+    app = CoreParser(option)
+    app.run_core_parser()

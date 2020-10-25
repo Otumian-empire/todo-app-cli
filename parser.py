@@ -1,7 +1,7 @@
 import os
 import sys
 
-import model
+from model import Todo
 
 
 def clear_screen():
@@ -29,13 +29,13 @@ class CoreParser:
             self.input_activity = option.input_activity
 
     def _parse_create_activity(self):
-        if model.create_activity(self.task):
+        if Todo().create_activity(self.task):
             print("create activity successful")
         else:
             print("create activity unsuccessful")
 
     def _parse_read_an_activity(self):
-        activity = model.read_an_activity(self.id)
+        activity = Todo().read_an_activity(self.id)
 
         if activity:
             print_activity(activity)
@@ -43,7 +43,7 @@ class CoreParser:
             print(f"There is no activity with id: {self.id}")
 
     def _parse_read_all_activities(self):
-        activities = model.read_all_activities()
+        activities = Todo().read_all_activities()
 
         if activities:
             for activity in activities:
@@ -52,19 +52,19 @@ class CoreParser:
             print(f"There is no activity")
 
     def _parse_update_an_activity(self):
-        if model.update_an_activity(self.id, self.task):
+        if Todo().update_an_activity(self.id, self.task):
             print("update activity successful")
         else:
             print("update activity unsuccessful")
 
     def _parse_delete_an_activity(self):
-        if model.delete_an_activity(self.id):
+        if Todo().delete_an_activity(self.id):
             print("delete activity successful")
         else:
             print("delete activity unsuccessful")
 
     def _parse_delete_all_activities(self):
-        if model.delete_all_activities():
+        if Todo().delete_all_activities():
             print("delete all activities successful")
         else:
             print("delete all activity unsuccessful")
@@ -138,8 +138,8 @@ class Option1Parser:
         if self.command in ['2', '4', '5']:
             self.id = input(">>> Enter task id: ")
 
-            if self.command == '4':
-                self.task = input(">>> Enter task: ")
+        if self.command in ['1', '4']:
+            self.task = input(">>> Enter task: ")
 
     def print_message(self):
         message = '''
