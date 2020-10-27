@@ -1,6 +1,6 @@
 import unittest
 
-from model import DB
+from db import DB
 
 
 class TestModelsDB(unittest.TestCase):

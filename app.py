@@ -1,5 +1,8 @@
 import sys
-from parser import CoreParser, Option1Parser, Option2Parser
+from parser import CoreParser
+
+from option1parser import Option1Parser
+from option2parser import Option2Parser
 
 if __name__ == "__main__":
 
