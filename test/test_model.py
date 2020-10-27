@@ -1,24 +1,7 @@
 import unittest
 
-from model import Todo, DB
-
-
-def do_check_table(sql_query, error_message="error", success_message="success"):
-    try:
-        db = DB()
-
-        conn = db.get_db_conn()
-        cur = db.get_cursor(conn)
-
-        cur.execute(sql_query)
-
-        if not cur:
-            raise Exception(error_message)
-        else:
-            print(success_message)
-
-    except Exception as e:
-        print(str(e))
+from model import Todo
+from util import do_check_table
 
 
 class TestModelsTodo(unittest.TestCase):
